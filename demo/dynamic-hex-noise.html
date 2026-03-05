@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Hex Noise Animation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<script>
+new p5(function(p) {
+  // ── Config ──────────────────────────────────────────────────────────────
+  const HEX_R   = 10;   // base circle radius
+  const COLS_N  = 4;    // number of Perlin noise colour "blobs"
+  const SPEED   = 0.0008;
+
+  // Palette: [r, g, b] for each colour zone
+  const PALETTE = [
+    [220,  20,  20],   // red
+    [220, 120,   0],   // orange
+    [  0, 180,  30],   // green
+    [180, 180, 180],   // grey / white
+  ];
+
+  // Each blob has an animated centre driven by Perlin noise
+  let blobs = [];
+  let W, H;
+  let t = 0;
+
+  // ── Setup ────────────────────────────────────────────────────────────────
+  p.setup = function() {
+    let sz = Math.min(p.windowWidth, p.windowHeight, 860);
+    p.createCanvas(sz, sz);
+    W = p.width; H = p.height;
+    p.colorMode(p.RGB, 255);
+    p.noStroke();
+
+    // Initialise blob seed positions (spread around canvas)
+    for (let i = 0; i < PALETTE.length; i++) {
+      blobs.push({
+        nx: p.random(10),   // noise x offset
+        ny: p.random(10),   // noise y offset
+        nz: p.random(10),   // noise z (for radius)
+        color: PALETTE[i],
+      });
+    }
+  };
+
+  // ── Draw ─────────────────────────────────────────────────────────────────
+  p.draw = function() {
+    p.background(0, 0, 0, 40);   // slight trail
+
+    // Animate blob centres with Perlin noise
+    let blobPos = blobs.map(b => ({
+      x: p.noise(b.nx + t) * W,
+      y: p.noise(b.ny + t) * H,
+      rad: p.map(p.noise(b.nz + t * 0.5), 0, 1, W * 0.12, W * 0.38),
+      color: b.color,
+    }));
+
+    // Hex grid spacing
+    const dx = HEX_R * 1.85;
+    const dy = HEX_R * 1.60;
+
+    for (let row = -1; row < Math.ceil(H / dy) + 1; row++) {
+      for (let col = -1; col < Math.ceil(W / dx) + 1; col++) {
+        let x = col * dx + (row % 2 === 0 ? 0 : dx * 0.5);
+        let y = row * dy;
+
+        // Determine colour & size at this point via weighted blob proximity
+        let totalW = 0;
+        let rc = 0, gc = 0, bc = 0;
+
+        for (let b of blobPos) {
+          let d = p.dist(x, y, b.x, b.y);
+          let w = Math.max(0, b.rad - d);
+          w = w * w;   // sharper falloff
+          totalW += w;
+          rc += b.color[0] * w;
+          gc += b.color[1] * w;
+          bc += b.color[2] * w;
+        }
+
+        // Perlin noise adds texture / grain
+        let noiseVal = p.noise(x * 0.004 + t * 0.3, y * 0.004 + t * 0.3);
+
+        let cr, cg, cb, alpha, radius;
+        if (totalW < 1) {
+          // Dark / black zones
+          cr = 0; cg = 0; cb = 0;
+          alpha = 220;
+          radius = p.map(noiseVal, 0, 1, HEX_R * 0.15, HEX_R * 0.6);
+        } else {
+          cr = (rc / totalW);
+          cg = (gc / totalW);
+          cb = (bc / totalW);
+          // Size fluctuates with noise
+          radius = p.map(noiseVal, 0, 1, HEX_R * 0.3, HEX_R * 1.1);
+          alpha = p.map(noiseVal, 0, 1, 160, 255);
+        }
+
+        // Add a little per-dot jitter
+        let jx = (p.noise(x * 0.02, y * 0.02, t) - 0.5) * HEX_R * 0.8;
+        let jy = (p.noise(x * 0.02 + 99, y * 0.02 + 99, t) - 0.5) * HEX_R * 0.8;
+
+        p.fill(cr, cg, cb, alpha);
+        p.ellipse(x + jx, y + jy, radius * 2, radius * 2);
+      }
+    }
+
+    t += SPEED;
+  };
+
+  p.windowResized = function() {
+    let sz = Math.min(p.windowWidth, p.windowHeight, 860);
+    p.resizeCanvas(sz, sz);
+    W = p.width; H = p.height;
+  };
+});
+</script>
+</body>
+</html>
