@@ -92,18 +92,54 @@ const parseBoards = (items = []) => items.map((item) => new BoardResult({
   pinCount: item.pin_count || 0,
 }));
 
+const MOCK_DATASETS = {
+  default: {
+    pins: [
+      { title: '北歐簡約客廳', description: '白色基調搭配木質元素，打造溫暖北歐氛圍', link: 'https://www.pinterest.com/pin/demo1/' },
+      { title: '北歐風植物裝飾', description: '大量綠植點綴自然感，搭配編織掛毯', link: 'https://www.pinterest.com/pin/demo2/' },
+      { title: '北歐臥室設計', description: '中性色系與質感床品，極簡而不失溫度', link: 'https://www.pinterest.com/pin/demo3/' },
+    ],
+    boards: [
+      { name: 'Scandinavian Interiors', description: 'Modern Nordic design ideas', url: 'https://www.pinterest.com/demo/scandinavian/' },
+    ],
+  },
+  '夜市': {
+    pins: [
+      { title: '台灣夜市霓虹招牌設計', description: '紅黃相間螢光色招牌，手寫毛筆字體與LED燈管混搭，濃厚市井氣息', link: 'https://www.pinterest.com/pin/night-market-1/' },
+      { title: '夜市攤位視覺包裝', description: '牛皮紙袋搭配印章LOGO，傳統與街頭文化融合的品牌識別', link: 'https://www.pinterest.com/pin/night-market-2/' },
+      { title: 'Taiwan Street Food Brand Identity', description: '以台灣廟宇剪紙紋樣為主視覺，結合現代排版的品牌設計', link: 'https://www.pinterest.com/pin/night-market-3/' },
+      { title: '熱炒文化視覺系統', description: '鐵皮屋頂、塑膠椅、喧鬧感轉化為設計語彙的潮流品牌', link: 'https://www.pinterest.com/pin/night-market-4/' },
+      { title: '夜市小吃插畫風格', description: '臭豆腐、雞排、珍珠奶茶等元素的Q版插畫包裝設計', link: 'https://www.pinterest.com/pin/night-market-5/' },
+    ],
+    boards: [
+      { name: 'Taiwan Night Market Aesthetics', description: '台灣夜市文化視覺設計合集', url: 'https://www.pinterest.com/demo/taiwan-night-market/' },
+      { name: 'Asian Street Food Branding', description: 'Street food visual identities across Asia', url: 'https://www.pinterest.com/demo/street-food-branding/' },
+    ],
+  },
+  '復古': {
+    pins: [
+      { title: '台灣復古海報設計', description: '1970年代台灣商業海報風格復刻，印刷感紋理與舊色調', link: 'https://www.pinterest.com/pin/retro-tw-1/' },
+      { title: '昭和時代雜貨風視覺', description: '日治時代磁磚花色、格子紋路與手繪字體的融合', link: 'https://www.pinterest.com/pin/retro-tw-2/' },
+      { title: 'Vintage Taiwan Typography', description: '老台灣黑體字與錯版印刷效果的現代應用', link: 'https://www.pinterest.com/pin/retro-tw-3/' },
+    ],
+    boards: [
+      { name: 'Vintage Taiwan Design', description: 'Nostalgic Taiwanese visual culture', url: 'https://www.pinterest.com/demo/vintage-taiwan/' },
+    ],
+  },
+};
+
+const getMockData = (query) => {
+  const key = Object.keys(MOCK_DATASETS).find((k) => k !== 'default' && query.includes(k));
+  const dataset = MOCK_DATASETS[key] || MOCK_DATASETS.default;
+  return new PinterestResults({
+    pins: dataset.pins.map((p) => new PinResult(p)),
+    boards: dataset.boards.map((b) => new BoardResult(b)),
+  });
+};
+
 const fetchPinterestPins = async (query) => {
   if (config.APP_ENV !== 'production' || !config.PINTEREST_ACCESS_TOKEN) {
-    return new PinterestResults({
-      pins: [
-        new PinResult({ title: '北歐簡約客廳', description: '白色基調搭配木質元素', link: 'https://www.pinterest.com/pin/demo1/' }),
-        new PinResult({ title: '北歐風植物裝飾', description: '大量綠植點綴自然感', link: 'https://www.pinterest.com/pin/demo2/' }),
-        new PinResult({ title: '北歐臥室設計', description: '中性色系與質感床品', link: 'https://www.pinterest.com/pin/demo3/' }),
-      ],
-      boards: [
-        new BoardResult({ name: 'Scandinavian Interiors', description: 'Modern Nordic design ideas', url: 'https://www.pinterest.com/demo/scandinavian/' }),
-      ],
-    });
+    return getMockData(query);
   }
 
   const [pinsRes, boardsRes] = await Promise.allSettled([
