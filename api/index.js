@@ -4,6 +4,7 @@ import config from '../config/index.js';
 import { validateLineSignature } from '../middleware/index.js';
 import storage from '../storage/index.js';
 import { fetchVersion, getVersion } from '../utils/index.js';
+import designRouter from '../server/design-router.js';
 
 const app = express();
 
@@ -12,6 +13,13 @@ app.use(express.json({
     req.rawBody = buf.toString();
   },
 }));
+
+app.use(express.static('public'));
+app.use(designRouter);
+
+app.get('/design', (req, res) => {
+  res.sendFile('design-chat.html', { root: 'public' });
+});
 
 app.get('/', (req, res) => {
   if (config.APP_URL) {
