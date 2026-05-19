@@ -95,6 +95,22 @@ const ja = {
   __COMMAND_TRANSLATE_TO_JA_LABEL: '翻成日文', // TODO
   __COMMAND_TRANSLATE_TO_JA_TEXT: '翻成日文', // TODO
   __COMMAND_TRANSLATE_TO_JA_PROMPT: '請將以下內容翻譯成日文。', // TODO
+  __COMMAND_BOT_PINTEREST_LABEL: 'Pinterestインスパイア',
+  __COMMAND_BOT_PINTEREST_TEXT: 'Pinterestインスパイア',
+  __COMMAND_BOT_PINTEREST_ALIASES: ['Pinterest検索', 'Pinterestおすすめ'],
+  __COMMAND_BOT_PINTEREST_DEMO_LABEL: 'Pinterestインスパイア',
+  __COMMAND_BOT_PINTEREST_DEMO_TEXT: 'Pinterestインスパイア 北欧インテリアデザイン',
+  __COMMAND_BOT_PINTEREST_INSPIRE_LABEL: 'Pinterestクリエイティブ',
+  __COMMAND_BOT_PINTEREST_INSPIRE_TEXT: 'Pinterestクリエイティブ',
+  __COMMAND_BOT_PINTEREST_INSPIRE_ALIASES: ['Pinterestアイデア'],
+  __PINTEREST_MISSING_TOPIC: 'デザインのテーマを教えてください。例：Pinterestインスパイア 北欧インテリアデザイン',
+  __PINTEREST_SEARCHING: (topic) => `「${topic}」に関するPinterestのクリエイティブなインスピレーションを検索中です...`,
+  __PINTEREST_NO_RESULTS: (topic) => `申し訳ありませんが、「${topic}」に関するPinterestリソースが見つかりませんでした。別のテーマをお試しください。`,
+  __PINTEREST_SYSTEM_PROMPT: 'あなたはプロのデザインクリエイティブコンサルタントで、Pinterestのビジュアルコンテンツの分析、デザイントレンドの解釈、インスピレーション豊かなクリエイティブアドバイスを提供することが得意です。',
+  __PINTEREST_RECOMMEND_AI_PROMPT: (topic, summary) => `以下は「${topic}」に関するPinterestの厳選コンテンツです：\n\n${summary}\n\nこれらのPinterestインスピレーションに基づいて、主なデザインスタイルと要素を分析し、3〜5つの具体的なクリエイティブな方向性を推薦し、これらのインスピレーションを実際のデザインにどのように応用するかを説明してください。`,
+  __PINTEREST_INSPIRE_AI_PROMPT: (topic, summary) => `以下は「${topic}」に関するPinterestの厳選コンテンツです：\n\n${summary}\n\nこれらのビジュアルインスピレーションの背後にあるデザイン哲学とトレンドを深く分析し、ユニークなクリエイティブな切り口を発見し、このテーマで独自の作品を生み出すための3つの革新的なデザインコンセプトを提案してください。`,
+  __PINTEREST_HISTORY_LABEL: 'Pinterestインスピレーション検索：',
+  __PINTEREST_LINKS_HEADER: '関連Pinterestインスピレーションリンク：',
   __COMPLETION_DEFAULT_SYSTEM_PROMPT: '', // TODO
   __COMPLETION_DEFAULT_HUMAN_PROMPT: (name) => (name ? `私は${name}です。` : 'こんにちは。'),
   __COMPLETION_DEFAULT_AI_PROMPT: (name) => (name ? `私は${name}です。` : 'こんにちは。'),

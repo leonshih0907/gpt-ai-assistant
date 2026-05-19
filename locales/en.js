@@ -95,6 +95,22 @@ const en = {
   __COMMAND_TRANSLATE_TO_JA_LABEL: '翻成日文', // TODO
   __COMMAND_TRANSLATE_TO_JA_TEXT: '翻成日文', // TODO
   __COMMAND_TRANSLATE_TO_JA_PROMPT: '請將以下內容翻譯成日文。', // TODO
+  __COMMAND_BOT_PINTEREST_LABEL: 'Pinterest Inspire',
+  __COMMAND_BOT_PINTEREST_TEXT: 'Pinterest Inspire',
+  __COMMAND_BOT_PINTEREST_ALIASES: ['Pinterest Search', 'Pinterest Recommend'],
+  __COMMAND_BOT_PINTEREST_DEMO_LABEL: 'Pinterest Inspire',
+  __COMMAND_BOT_PINTEREST_DEMO_TEXT: 'Pinterest Inspire Scandinavian interior design',
+  __COMMAND_BOT_PINTEREST_INSPIRE_LABEL: 'Pinterest Creative',
+  __COMMAND_BOT_PINTEREST_INSPIRE_TEXT: 'Pinterest Creative',
+  __COMMAND_BOT_PINTEREST_INSPIRE_ALIASES: ['Pinterest Ideas'],
+  __PINTEREST_MISSING_TOPIC: 'Please tell me the design theme you want to explore, e.g.: Pinterest Inspire Scandinavian interior design',
+  __PINTEREST_SEARCHING: (topic) => `Searching Pinterest for creative inspiration about "${topic}", please wait...`,
+  __PINTEREST_NO_RESULTS: (topic) => `Sorry, no Pinterest resources found for "${topic}". Please try a different topic.`,
+  __PINTEREST_SYSTEM_PROMPT: 'You are a professional design creativity consultant, skilled at analyzing Pinterest visual content, interpreting design trends, and providing inspiring creative suggestions.',
+  __PINTEREST_RECOMMEND_AI_PROMPT: (topic, summary) => `Here is curated Pinterest content about "${topic}":\n\n${summary}\n\nBased on these Pinterest inspirations, analyze the main design styles and elements, then recommend 3-5 specific creative directions and explain how to apply these inspirations in actual design work.`,
+  __PINTEREST_INSPIRE_AI_PROMPT: (topic, summary) => `Here is curated Pinterest content about "${topic}":\n\n${summary}\n\nDeeply analyze the design philosophy and trends behind these visual inspirations, uncover unique creative angles, and propose 3 breakthrough design concepts to help users create distinctive work on this theme.`,
+  __PINTEREST_HISTORY_LABEL: 'Pinterest inspiration search: ',
+  __PINTEREST_LINKS_HEADER: 'Related Pinterest inspiration links:',
   __COMPLETION_DEFAULT_SYSTEM_PROMPT: '', // TODO
   __COMPLETION_DEFAULT_HUMAN_PROMPT: (name) => (name ? `I am ${name}.` : 'Hello!'),
   __COMPLETION_DEFAULT_AI_PROMPT: (name) => (name ? `I am ${name}.` : 'Hello!'),

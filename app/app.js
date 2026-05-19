@@ -9,6 +9,7 @@ import {
   drawHandler,
   forgetHandler,
   enquireHandler,
+  pinterestHandler,
   reportHandler,
   retryHandler,
   searchHandler,
@@ -32,6 +33,7 @@ const handleContext = async (context) => (
   || drawHandler(context)
   || forgetHandler(context)
   || enquireHandler(context)
+  || pinterestHandler(context)
   || reportHandler(context)
   || retryHandler(context)
   || searchHandler(context)

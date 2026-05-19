@@ -45,6 +45,9 @@ const config = Object.freeze({
   SERPAPI_API_KEY: env.SERPAPI_API_KEY || null,
   SERPAPI_LOCATION: env.SERPAPI_LOCATION || 'Taiwan',
   SERPAPI_LANG: env.SERPAPI_LANG || 'lang_zh-TW',
+  PINTEREST_TIMEOUT: env.PINTEREST_TIMEOUT || env.APP_API_TIMEOUT,
+  PINTEREST_ACCESS_TOKEN: env.PINTEREST_ACCESS_TOKEN || null,
+  PINTEREST_PAGE_SIZE: Number(env.PINTEREST_PAGE_SIZE) || 10,
 });
 
 export default config;

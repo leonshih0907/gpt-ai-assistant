@@ -1,5 +1,8 @@
 import { TYPE_ANALYZE, TYPE_SUM, TYPE_TRANSLATE } from '../../constants/command.js';
 import COMMAND_ANALYZE_ANALYZE from './analyze-analyze.js';
+import COMMAND_BOT_PINTEREST from './bot-pinterest.js';
+import COMMAND_BOT_PINTEREST_INSPIRE from './bot-pinterest-inspire.js';
+import COMMAND_BOT_PINTEREST_DEMO from './bot-pinterest-demo.js';
 import COMMAND_ANALYZE_LITERARILY from './analyze-literarily.js';
 import COMMAND_ANALYZE_MATHEMATICALLY from './analyze-mathematically.js';
 import COMMAND_ANALYZE_NUMEROLOGICALLY from './analyze-numerologically.js';
@@ -35,6 +38,8 @@ import COMMAND_TRANSLATE_TO_EN from './translate-to-en.js';
 import COMMAND_TRANSLATE_TO_JA from './translate-to-ja.js';
 
 export const ALL_COMMANDS = [
+  COMMAND_BOT_PINTEREST,
+  COMMAND_BOT_PINTEREST_INSPIRE,
   COMMAND_ANALYZE_ANALYZE,
   COMMAND_ANALYZE_LITERARILY,
   COMMAND_ANALYZE_MATHEMATICALLY,
@@ -81,6 +86,7 @@ export const GENERAL_COMMANDS = [
   COMMAND_BOT_TALK_DEMO,
   COMMAND_BOT_DRAW_DEMO,
   COMMAND_BOT_SEARCH_DEMO,
+  COMMAND_BOT_PINTEREST_DEMO,
   COMMAND_BOT_FORGET,
   COMMAND_SUM_SUM,
   COMMAND_ANALYZE_ANALYZE,
@@ -94,6 +100,9 @@ export const ENQUIRE_COMMANDS = ALL_COMMANDS.filter(({ type }) => (
 ));
 
 export {
+  COMMAND_BOT_PINTEREST,
+  COMMAND_BOT_PINTEREST_INSPIRE,
+  COMMAND_BOT_PINTEREST_DEMO,
   COMMAND_ANALYZE_ANALYZE,
   COMMAND_ANALYZE_LITERARILY,
   COMMAND_ANALYZE_MATHEMATICALLY,
