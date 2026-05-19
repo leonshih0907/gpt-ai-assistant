@@ -1,10 +1,15 @@
 import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { handleEvents, printPrompts } from '../app/index.js';
 import config from '../config/index.js';
 import { validateLineSignature } from '../middleware/index.js';
 import storage from '../storage/index.js';
 import { fetchVersion, getVersion } from '../utils/index.js';
 import designRouter from '../server/design-router.js';
+
+const __dir = dirname(fileURLToPath(import.meta.url));
+const publicDir = join(__dir, '../public');
 
 const app = express();
 
@@ -14,11 +19,11 @@ app.use(express.json({
   },
 }));
 
-app.use(express.static('public'));
+app.use(express.static(publicDir));
 app.use(designRouter);
 
 app.get('/design', (req, res) => {
-  res.sendFile('design-chat.html', { root: 'public' });
+  res.sendFile(join(publicDir, 'design-chat.html'));
 });
 
 app.get('/', (req, res) => {
