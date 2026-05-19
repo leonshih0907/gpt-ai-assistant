@@ -2,8 +2,6 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/design", "destination": "/design-chat.html" },
-    { "source": "/webhook", "destination": "/api" },
-    { "source": "/info", "destination": "/api" },
-    { "source": "/", "destination": "/api" }
+    { "source": "/", "destination": "/design-chat.html" }
   ]
 }
