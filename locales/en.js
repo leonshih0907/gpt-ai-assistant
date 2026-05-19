@@ -1,4 +1,45 @@
 const en = {
+  __COMMAND_DESIGN_INSPIRE_LABEL: 'Design Inspire',
+  __COMMAND_DESIGN_INSPIRE_TEXT: 'Design Inspire',
+  __COMMAND_DESIGN_INSPIRE_ALIASES: ['Design Ideas', 'Visual Inspire'],
+  __COMMAND_DESIGN_SKETCH_LABEL: 'Design Sketch',
+  __COMMAND_DESIGN_SKETCH_TEXT: 'Design Sketch',
+  __COMMAND_DESIGN_SKETCH_ALIASES: ['Generate Sketch', 'Visual Sketch'],
+  __COMMAND_DESIGN_PALETTE_LABEL: 'Color Palette',
+  __COMMAND_DESIGN_PALETTE_TEXT: 'Color Palette',
+  __COMMAND_DESIGN_PALETTE_ALIASES: ['Palette', 'Color Advice'],
+  __COMMAND_DESIGN_BRIEF_LABEL: 'Design Brief',
+  __COMMAND_DESIGN_BRIEF_TEXT: 'Design Brief',
+  __COMMAND_DESIGN_BRIEF_ALIASES: ['Creative Brief'],
+  __COMMAND_DESIGN_EXPAND_LABEL: 'Expand Creativity',
+  __COMMAND_DESIGN_EXPAND_TEXT: 'Expand Creativity',
+  __COMMAND_DESIGN_EXPAND_ALIASES: ['Deepen Idea', 'Continue Design'],
+  __DESIGN_MISSING_TOPIC: (mode) => {
+    const examples = {
+      inspire: 'Design Inspire Taiwan night market visual',
+      palette: 'Color Palette Taiwan night market',
+      brief: 'Design Brief Taiwan night market restaurant',
+      sketch: 'Design Sketch neon sign illustration style',
+    };
+    return `Please enter a design topic, e.g.: ${examples[mode] || 'Design Inspire Taiwan night market'}`;
+  },
+  __DESIGN_INSPIRE_SYSTEM: 'You are a senior visual communication designer with expertise in branding, illustration, typography, and color theory. You excel at distilling design inspiration from culture, trends, and art history.',
+  __DESIGN_INSPIRE_PROMPT: (topic) => `For the design theme "${topic}", provide 5 specific visual creative directions. Each direction includes:\n1. Direction name\n2. Core visual concept (1 sentence)\n3. Color tone suggestion\n4. Typography style\n5. One image generation description\n\nFinally, suggest the user type "Design Sketch [description]" to generate visuals.`,
+  __DESIGN_PALETTE_SYSTEM: 'You are a visual designer expert in color theory. Provide specific color schemes with HEX codes, color psychology analysis, and practical application suggestions.',
+  __DESIGN_PALETTE_PROMPT: (topic) => `Design a complete brand color system for "${topic}" including:\n\n**Primary**: HEX + name + usage\n**Secondary**: 2-3 colors + HEX + logic\n**Accent**: HEX + when to use\n**Neutral**: HEX + purpose\n\nExplain the emotional tone and brand personality conveyed.`,
+  __DESIGN_BRIEF_SYSTEM: 'You are a creative director skilled at writing clear design briefs. Present design proposals in a structured, professional manner.',
+  __DESIGN_BRIEF_PROMPT: (topic) => `Write a complete Creative Brief for "${topic}" including:\n\n**Project Overview**\n**Target Audience**\n**Design Goals** (3 points)\n**Visual Style**\n**Restrictions**\n**Reference Style Keywords** (for image generation)\n**Deliverables**`,
+  __DESIGN_EXPAND_SYSTEM: 'You are a visual creativity mentor who deepens and extends design concepts based on conversation context, providing more concrete and innovative design details.',
+  __DESIGN_EXPAND_PROMPT: 'Based on the design direction above, deepen the most promising creative direction. Provide more specific visual details, material textures, and dynamic descriptions, then generate an English image generation prompt.',
+  __DESIGN_SKETCH_GENERATED: 'Design sketch generated',
+  __DESIGN_SKETCH_PROMPT_USED: (prompt) => `Generating design image...\nVisual prompt used:\n"${prompt}"`,
+  __DESIGN_HISTORY_LABEL: (mode) => {
+    const labels = {
+      inspire: 'Design inspire: ', palette: 'Color palette: ', brief: 'Design brief: ', expand: 'Expand creativity',
+    };
+    return labels[mode] || 'Design: ';
+  },
+  __DESIGN_HISTORY_SKETCH: 'Design sketch: ',
   __COMMAND_ANALYZE_ANALYZE_LABEL: 'Analyze',
   __COMMAND_ANALYZE_ANALYZE_TEXT: 'Analyze',
   __COMMAND_ANALYZE_ANALYZE_PROMPT: 'Please analyze the following statements.',

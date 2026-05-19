@@ -1,4 +1,45 @@
 const zh = {
+  __COMMAND_DESIGN_INSPIRE_LABEL: '設計靈感',
+  __COMMAND_DESIGN_INSPIRE_TEXT: '設計靈感',
+  __COMMAND_DESIGN_INSPIRE_ALIASES: ['設計啟發', '視覺靈感'],
+  __COMMAND_DESIGN_SKETCH_LABEL: '設計草圖',
+  __COMMAND_DESIGN_SKETCH_TEXT: '設計草圖',
+  __COMMAND_DESIGN_SKETCH_ALIASES: ['生成設計圖', '視覺草圖'],
+  __COMMAND_DESIGN_PALETTE_LABEL: '配色建議',
+  __COMMAND_DESIGN_PALETTE_TEXT: '配色建議',
+  __COMMAND_DESIGN_PALETTE_ALIASES: ['調色盤', '色彩建議'],
+  __COMMAND_DESIGN_BRIEF_LABEL: '設計簡報',
+  __COMMAND_DESIGN_BRIEF_TEXT: '設計簡報',
+  __COMMAND_DESIGN_BRIEF_ALIASES: ['創意簡報', '設計提案'],
+  __COMMAND_DESIGN_EXPAND_LABEL: '創意擴展',
+  __COMMAND_DESIGN_EXPAND_TEXT: '創意擴展',
+  __COMMAND_DESIGN_EXPAND_ALIASES: ['深化創意', '繼續創作'],
+  __DESIGN_MISSING_TOPIC: (mode) => {
+    const examples = {
+      inspire: '設計靈感 台灣夜市風視覺',
+      palette: '配色建議 台灣夜市',
+      brief: '設計簡報 台灣夜市主題餐廳',
+      sketch: '設計草圖 霓虹招牌插畫風格',
+    };
+    return `請輸入設計主題，例如：${examples[mode] || '設計靈感 台灣夜市風視覺'}`;
+  },
+  __DESIGN_INSPIRE_SYSTEM: '你是一位資深視覺傳達設計師，精通品牌設計、插畫、排版與色彩理論。你善於從文化、流行趨勢與藝術史中提煉設計靈感，並以清晰有力的語言描述視覺概念。請用繁體中文回應。',
+  __DESIGN_INSPIRE_PROMPT: (topic) => `請針對「${topic}」這個設計主題，提供 5 個具體的視覺創意方向。每個方向包含：\n1. 方向名稱（2-5字）\n2. 核心視覺概念（1句話）\n3. 色調建議\n4. 字體風格\n5. 一句設計草圖描述（可用來生成圖像）\n\n最後提示用戶可輸入「設計草圖 [方向描述]」來生成視覺圖像。`,
+  __DESIGN_PALETTE_SYSTEM: '你是一位精通色彩理論的視覺設計師。請提供具體的色彩搭配方案，包含 HEX 色碼、色彩心理學解析，以及實際應用建議。請用繁體中文回應。',
+  __DESIGN_PALETTE_PROMPT: (topic) => `請為「${topic}」設計一套完整的品牌色彩系統，包含：\n\n**主色（Primary）**：HEX + 命名 + 使用場景\n**輔助色（Secondary）**：2-3色 + HEX + 搭配邏輯\n**強調色（Accent）**：HEX + 使用時機\n**中性色（Neutral）**：HEX + 用途\n\n最後說明整體色調傳遞的情感與品牌個性。`,
+  __DESIGN_BRIEF_SYSTEM: '你是一位創意總監，擅長撰寫清晰的設計提案文件。請以結構化、專業的方式呈現設計簡報。請用繁體中文回應。',
+  __DESIGN_BRIEF_PROMPT: (topic) => `請為「${topic}」撰寫一份完整的設計簡報（Creative Brief），包含：\n\n**專案概述**\n**目標受眾**\n**設計目標**（3點）\n**視覺風格定調**\n**禁忌事項**\n**參考風格關鍵字**（可用於圖像生成）\n**交付物清單**`,
+  __DESIGN_EXPAND_SYSTEM: '你是一位視覺創作導師，能夠根據對話脈絡深化與延伸設計概念，提出更具體、更創新的設計細節。請用繁體中文回應。',
+  __DESIGN_EXPAND_PROMPT: '請根據上述設計方向，進一步深化最有潛力的創意，提供更具體的視覺細節、材質質感、動態感描述，並生成一段可直接用於圖像生成的英文描述詞（Prompt）。',
+  __DESIGN_SKETCH_GENERATED: '設計草圖已生成',
+  __DESIGN_SKETCH_PROMPT_USED: (prompt) => `正在生成設計圖像...\n使用的視覺描述詞：\n「${prompt}」`,
+  __DESIGN_HISTORY_LABEL: (mode) => {
+    const labels = {
+      inspire: '設計靈感：', palette: '配色建議：', brief: '設計簡報：', expand: '創意擴展',
+    };
+    return labels[mode] || '設計創作：';
+  },
+  __DESIGN_HISTORY_SKETCH: '設計草圖：',
   __COMMAND_ANALYZE_ANALYZE_LABEL: '分析',
   __COMMAND_ANALYZE_ANALYZE_TEXT: '分析',
   __COMMAND_ANALYZE_ANALYZE_PROMPT: '分析以下內容，並給予細節。',

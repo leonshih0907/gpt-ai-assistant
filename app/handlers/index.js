@@ -3,6 +3,7 @@ import commandHandler from './command.js';
 import continueHandler from './continue.js';
 import deactivateHandler from './deactivate.js';
 import deployHandler from './deploy.js';
+import designCreativeHandler from './design-creative.js';
 import docHandler from './doc.js';
 import drawHandler from './draw.js';
 import forgetHandler from './forget.js';
@@ -20,6 +21,7 @@ export {
   continueHandler,
   deactivateHandler,
   deployHandler,
+  designCreativeHandler,
   docHandler,
   drawHandler,
   forgetHandler,
